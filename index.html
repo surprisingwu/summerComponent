@@ -22,7 +22,7 @@
     <div id="app" @touchstart="slideStart" @touchmove="slideMove" @touchend="slideEnd">
         <div id="main" ref="app">
             <header>
-                <i class="slideLeft iconfont icon-zhedie-copy" @click='openSlideWrapper'></i>
+                <i class="slideLeft iconfont icon-zhedie-copy" @click.stop='openSlideWrapper'></i>
                 <h2 class="title">首页</h2>
                 <i class="questionInfo iconfont icon-shuoming"></i>
             </header>

@@ -1,79 +1,87 @@
 ﻿$(function() {
-    var MIN_OFFSET_LEFT = 50
     var app = new Vue({
         el: "#app",
         data: {
-            openSlide: false
+            isSpread: false,
+            isMove: false
         },
         created: function() {
             this.touch = {}
         },
         methods: {
             slideStart: function(e) {
-                this.touch.initiated = true
                 this.touch.startX = e.touches[0].pageX
+                this.touch.startY = e.touches[0].pageY
+                this.touch.startTime = new Date().getTime()
+                this.isMove = false
             },
             slideMove: function(e) {
-                if (!this.touch.initiated) {
-                    return
+                var deltaX = e.touches[0].pageX - this.touch.startX
+                var deltaY = e.touches[0].pageY - this.touch.startY
+                var MAX_SLIDE_WIDTH = this.$refs.slideWrapper.clientWidth
+                    // 判断是x轴还是y轴
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    // 滑动的距离超过最大的距离,则返回
+                    if (Math.abs(deltaX) > MAX_SLIDE_WIDTH) {
+                        return
+                    }
+                    // 已展开,再右滑,返回
+                    if (this.isSpread && deltaX > 0) {
+                        return
+                    }
+                    // 没有展开,左划返回
+                    if (!this.isSpread && deltaX < 0) {
+                        return
+                    }
+                    var offsetMain = this.isSpread ? MAX_SLIDE_WIDTH : 0
+                    this.$refs.app.style['transform'] = 'translate3d(' + (offsetMain + deltaX) + 'px,0,0)'
+                    this.$refs.slideWrapper.style['transform'] = 'translate3d(' + (offsetMain - MAX_SLIDE_WIDTH + deltaX) + 'px,0,0)'
+                    this.isMove = true
+                    this.touch.slideWidth = MAX_SLIDE_WIDTH
+                    this.touch.deltaX = deltaX
                 }
-                this.touch.moveX = e.touches[0].pageX
-                var offsetLeft = this.touch.moveX - this.touch.startX
-                if (offsetLeft < 0 && !this.openSlide) {
-                    return
-                }
-
-                var slideWidth = this.$refs.slideWrapper.clientWidth
-
-                var offsetSlideWidth = -slideWidth + offsetLeft
-                this.touch.offsetLeft = offsetLeft
-                this.touch.slideWidth = slideWidth
-                this.touch.offsetSlideWidth = offsetSlideWidth
-                if (offsetSlideWidth > 0) {
-                    return
-                }
-
-                this.$refs.app.style['transform'] = 'translate3d(' + offsetLeft + 'px,0,0)'
-                this.$refs.slideWrapper.style['transform'] = 'translate3d(' + offsetSlideWidth + 'px,0,0)'
-
 
             },
             slideEnd: function(e) {
-                if (this.openSlide) {
-                    if (this.touch.offsetLeft <= -MIN_OFFSET_LEFT) {
-                        this.$refs.app.style['transform'] = 'translate3d(0,0,0)'
-                        this.$refs.slideWrapper.style['transform'] = 'translate3d(-' + this.touch.slideWidth + 'px,0,0)'
+                var deltaTime = new Date().getTime() - this.touch.startTime
+                var _flag = false
+                if (this.isMove) {
+                    // 快读滑动
+                    var offsetMain = 0,
+                        _width = this.touch.slideWidth,
+                        _deltaX = this.touch.deltaX;
+                    if (deltaTime < 300) {
 
-                        this.openSlide = false
+                        offsetMain = this.isSpread ? 0 : _width
+                        _flag = true
                     } else {
-                        this.$refs.app.style['transform'] = 'translate3d(' + this.touch.slideWidth + 'px, 0, 0)'
-                        this.$refs.slideWrapper.style['transform'] = 'translate3d(0,0,0)'
-
+                        if (Math.abs(_deltaX) / _width >= 0.5) {
+                            offsetMain = this.isSpread ? 0 : _width
+                            _flag = true
+                        } else {
+                            offsetMain = this.isSpread ? _width : 0
+                        }
                     }
-                } else {
-                    if (this.touch.offsetLeft >= MIN_OFFSET_LEFT) {
-                        this.$refs.app.style['transform'] = 'translate3d(' + this.touch.slideWidth + 'px,0,0)'
-                        this.$refs.slideWrapper.style['transform'] = 'translate3d(0,0,0)'
-
-                        this.openSlide = true
-                    } else {
-                        this.$refs.app.style['transform'] = 'translate3d(0, 0, 0)'
-                        this.$refs.slideWrapper.style['transform'] = 'translate3d(-' + this.touch.slideWidth + 'px,0,0)'
-
+                    this.showSlide(offsetMain, _width)
+                    this.touch = {}
+                    if (_flag) {
+                        this.isSpread = !this.isSpread
                     }
                 }
-                this.$refs.app.style['transition'] = 'all 0.3s'
-                this.$refs.slideWrapper.style['transition'] = 'all 0.3s'
-                this.initiated = false
-                this.touch = {}
+
             },
             openSlideWrapper: function() {
-                var offserWidth = this.$refs.slideWrapper.clientWidth
-                this.$refs.app.style['transform'] = 'translate3d(' + this.touch.slideWidth + 'px,0,0)'
-                this.$refs.slideWrapper.style['transform'] = 'translate3d(0,0,0)'
-                this.$refs.app.style['transition'] = 'all 0.3s'
-                this.$refs.slideWrapper.style['transition'] = 'all 0.3s'
-                this.openSlide = true
+                var slideWidth = this.$refs.slideWrapper.clientWidth
+                var offsetMain = this.isSpread ? 0 : slideWidth
+                this.showSlide(offsetMain, slideWidth)
+                this.isSpread = !this.isSpread
+            },
+            showSlide: function(offsetMain, slideWidth) {
+                this.$refs.app.style['transform'] = 'translate3d(' + offsetMain + 'px, 0, 0)'
+                this.$refs.slideWrapper.style['transform'] = 'translate3d(' + (offsetMain - slideWidth) + 'px,0,0)'
+                    // debugger
+                this.$refs.app.style['transition'] = 'all 0.3s ease'
+                this.$refs.slideWrapper.style['transition'] = 'all 0.3s ease'
             }
         }
 

@@ -70,5 +70,5 @@ main {
     top: 0;
     bottom: 0;
     transform: translate3d(-100%, 0, 0);
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.3);
 }
