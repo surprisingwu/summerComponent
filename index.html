@@ -10,11 +10,14 @@
 
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="font/iconfont.css">
+    <link rel="stylesheet" href="css/common.css">
     <script src="js/summer.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/Frameworks/iuapmobile.frameworks.ui.js"></script>
     <script src="js/vue.js"></script>
     <script src="js/vue-router.js"></script>
+    <script src="js/components/index.js"></script>
+    <script src="js/router/index.js"></script>
     <script src="js/index.js"></script>
 </head>
 
@@ -26,9 +29,28 @@
                 <h2 class="title">首页</h2>
                 <i class="questionInfo iconfont icon-shuoming"></i>
             </header>
-            <main>
-
+            <main ref="main">
+                <ul>
+                    <li class="list-item" @click.stop="listItemClick" :class="{'active-background':!isBorderShow}">
+                        <div class="content-inner" v-bind:class="{'border-1px':isBorderShow}">
+                            <span class="text">导航栏</span>
+                            <i class="iconfont icon-jiantouxia icon-common" :class="{'active-arrow':!isBorderShow}"></i>
+                        </div>
+                        <ul class="child-wrapper" v-show="!isBorderShow">
+                            <li class="child-list-item" @click.stop="childItemClick">
+                                <div class="content-inner border-1px">
+                                    <span class="text">基础导航栏</span>
+                                    <i class="iconfont icon-jiantouyou icon-common"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </main>
+            <transition name="router-slide">
+                <router-view></router-view>
+            </transition>
+
         </div>
 
 

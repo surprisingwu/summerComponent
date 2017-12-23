@@ -1,0 +1,81 @@
+.border-1px {
+    position: relative;
+}
+
+.border-1px::after {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid rgb(228, 227, 230);
+    content: " ";
+}
+
+.border-none {
+    position: relative
+}
+
+.border-none::after {
+    display: none;
+}
+
+.icon-common {
+    position: absolute;
+    right: 20px;
+    color: rgb(228, 227, 230);
+}
+
+.active-background {
+    background-color: rgb(238, 238, 238)
+}
+
+.active-arrow {
+    transform: rotate(-180deg);
+    transition: all 0.2s;
+}
+
+.components-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+}
+
+.router-slide-enter-active,
+.router-slide-leave-active {
+    transition: all 0.3s ease;
+}
+
+.router-slide-enter,
+.router-slide-leave-to {
+    transform: translate3d(100%, 0, 0)
+}
+
+.um-check-group {
+    margin: 0;
+}
+
+
+/* 组件里面的样式 */
+
+.text-content,
+.components-title {
+    font-size: 13px;
+    color: rgb(143, 143, 148);
+    background-color: rgb(239, 239, 244);
+}
+
+.text-content {
+    padding: 20px 15px;
+}
+
+.components-title {
+    padding: 10px 15px;
+}
+
+.um-header-light {
+    background-color: rgb(247, 247, 247)
+}

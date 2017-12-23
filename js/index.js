@@ -1,14 +1,25 @@
 ﻿$(function() {
     var app = new Vue({
         el: "#app",
+        router: router,
         data: {
-            isSpread: false,
-            isMove: false
+            isSpread: false, // 侧滑页面是够展开
+            isMove: false, // 侧滑页面是否开始滑动
+            isBorderShow: true, // 是否显示下面的边框
         },
         created: function() {
             this.touch = {}
         },
         methods: {
+            childItemClick: function(e) {
+                this.$router.push({ path: 'navigator/base1' })
+            },
+            listItemClick: function(e) {
+                console.log(e)
+                e.stopPropagation();
+                console.log('冒泡')
+                this.isBorderShow = !this.isBorderShow
+            },
             slideStart: function(e) {
                 this.touch.startX = e.touches[0].pageX
                 this.touch.startY = e.touches[0].pageY
@@ -16,6 +27,9 @@
                 this.isMove = false
             },
             slideMove: function(e) {
+                if (!(this.$router.currentRoute.path === '/')) {
+                    return
+                }
                 var deltaX = e.touches[0].pageX - this.touch.startX
                 var deltaY = e.touches[0].pageY - this.touch.startY
                 var MAX_SLIDE_WIDTH = this.$refs.slideWrapper.clientWidth
