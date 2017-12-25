@@ -33,8 +33,8 @@
                 return item.children && item.children.length
             },
             childItemClick: function(e) {
-                var path = JSON.parse(e.currentTarget.attributes['path'].value)
-                this.$router.push(path)
+                var path = e.currentTarget.attributes['path'].value
+                this.$router.push({ path: path })
             },
             listItemClick: function(item, e) {
                 e.stopPropagation();

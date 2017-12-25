@@ -39,7 +39,7 @@
                         </div>
                         <transition name='collapse-ani'>
                             <ul class="child-wrapper" v-if='item.isChangeBackground'>
-                                <li v-show='!item.isBorderShow' v-for="subItem in item.children" class="child-list-item" :path='JSON.stringify(subItem.path)' @click.stop="childItemClick">
+                                <li v-show='!item.isBorderShow' v-for="subItem in item.children" class="child-list-item" v-bind='subItem.path' @click.stop="childItemClick">
                                     <div class="content-inner border-1px">
                                         <span class="text">{{subItem.text}}</span>
                                         <i class="iconfont icon-jiantouyou icon-common"></i>
