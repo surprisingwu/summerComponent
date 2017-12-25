@@ -23,7 +23,8 @@
 .icon-common {
     position: absolute;
     right: 20px;
-    color: rgb(228, 227, 230);
+    color: #333;
+    transition: all 0.2s;
 }
 
 .active-background {
@@ -32,7 +33,6 @@
 
 .active-arrow {
     transform: rotate(-180deg);
-    transition: all 0.2s;
 }
 
 .components-wrapper {
@@ -58,6 +58,10 @@
     margin: 0;
 }
 
+.margin-left-15 {
+    margin-left: 15px;
+}
+
 
 /* 组件里面的样式 */
 
@@ -78,4 +82,21 @@
 
 .um-header-light {
     background-color: rgb(247, 247, 247)
+}
+
+.collapse-list-enter-active,
+.collapse-list-leave-active {
+    transition: 0.3s;
+}
+
+@keyframes collapse-list {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, 80%, 0);
+    }
+    100% {
+        transform: translate3d(0, 100%, 0);
+    }
 }

@@ -5,20 +5,43 @@
         data: {
             isSpread: false, // 侧滑页面是够展开
             isMove: false, // 侧滑页面是否开始滑动
-            isBorderShow: true, // 是否显示下面的边框
+            components: [{
+                    title: '导航栏',
+                    isChangeBackground: true,
+                    isBorderShow: true,
+                    children: [
+                        { path: { path: 'navigator/base1' }, text: '基础导航栏' },
+                        { path: { path: 'navigator/base2' }, text: '带头像导航栏(左右排列)' },
+                        { path: { path: 'navigator/base3' }, text: '带头像导航栏(横向排列)' }
+                    ]
+                },
+                {
+                    title: '选项卡',
+                    isBorderShow: true,
+                    isChangeBackground: false,
+                }
+            ],
         },
         created: function() {
             this.touch = {}
         },
+        computed: {
+
+        },
         methods: {
-            childItemClick: function(e) {
-                this.$router.push({ path: 'navigator/base1' })
+            isHaveChildren: function(item) {
+                return item.children && item.children.length
             },
-            listItemClick: function(e) {
-                console.log(e)
+            childItemClick: function(e) {
+                var path = JSON.parse(e.currentTarget.attributes['path'].value)
+                this.$router.push(path)
+            },
+            listItemClick: function(item, e) {
                 e.stopPropagation();
                 console.log('冒泡')
-                this.isBorderShow = !this.isBorderShow
+                if (this.isHaveChildren(item) && item.isChangeBackground) {
+                    item.isBorderShow = !item.isBorderShow
+                }
             },
             slideStart: function(e) {
                 this.touch.startX = e.touches[0].pageX

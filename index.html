@@ -31,19 +31,22 @@
             </header>
             <main ref="main">
                 <ul>
-                    <li class="list-item" @click.stop="listItemClick" :class="{'active-background':!isBorderShow}">
-                        <div class="content-inner" v-bind:class="{'border-1px':isBorderShow}">
-                            <span class="text">导航栏</span>
-                            <i class="iconfont icon-jiantouxia icon-common" :class="{'active-arrow':!isBorderShow}"></i>
+                    <li class="list-item" v-for='item in components' @click.stop="listItemClick(item,$event)" :class="{'active-background': item.isChangeBackground&&!item.isBorderShow}">
+                        <div class="content-inner margin-left-15" v-bind:class="{'border-1px':item.isBorderShow}">
+                            <span class="text">{{item.title}}</span>
+                            <i class="iconfont icon-jiantouxia icon-common" v-if='isHaveChildren(item)' :class="{'active-arrow': !item.isBorderShow}"></i>
+                            <i class="iconfont icon-jiantouyou icon-common" v-else></i>
                         </div>
-                        <ul class="child-wrapper" v-show="!isBorderShow">
-                            <li class="child-list-item" @click.stop="childItemClick">
-                                <div class="content-inner border-1px">
-                                    <span class="text">基础导航栏</span>
-                                    <i class="iconfont icon-jiantouyou icon-common"></i>
-                                </div>
-                            </li>
-                        </ul>
+                        <transition name='collapse-ani'>
+                            <ul class="child-wrapper" v-if='item.isChangeBackground'>
+                                <li v-show='!item.isBorderShow' v-for="subItem in item.children" class="child-list-item" :path='JSON.stringify(subItem.path)' @click.stop="childItemClick">
+                                    <div class="content-inner border-1px">
+                                        <span class="text">{{subItem.text}}</span>
+                                        <i class="iconfont icon-jiantouyou icon-common"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </transition>
                     </li>
                 </ul>
             </main>

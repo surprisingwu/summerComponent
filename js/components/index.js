@@ -9,15 +9,6 @@ var mixins = {
         }
     }
 }
-components.common.Radio = {
-    template: '<div class="um-check-group">' +
-        '<label class="um-check-group-item" v-for="item in radioMesg">' +
-        '<input name="um-radio" checked type="radio" :value="item.value">' +
-        '<span class="um-icon-check um-css3-vc"></span>' +
-        '<span class="um-black">{{item.text}}</span>' +
-        '</label></div>',
-    props: ['radioMesg']
-}
 components.navigator.NavigatorBase = {
     template: '<div class="components-wrapper">' +
         '<div class="um-header-light">' +
@@ -114,4 +105,21 @@ components.navigator.NavigatorBase = {
             }
         }
     }
+}
+components.navigator.NavigatorHavePhoto1 = {
+    template: '<div class="components-wrapper"><div class="um-header um-header-personal"><a href="#" @click="goToBack" class="um-back"></a>' +
+        '<p class="tc pt15"><img class="um-circle" height="60px" width="60px" src="img/user.png" alt="...">' +
+        '</p><p class="tc  um-white">name</p>' +
+        '<p class="tc um-white">name@yonyou.com</p> ' +
+        '</div></div>',
+    mixins: [mixins]
+}
+components.navigator.NavigatorHavePhoto2 = {
+    template: '<div class="components-wrapper"><div class="um-header um-header-personal"><a href="#" @click="goToBack" class="um-back"></a>' +
+        '<div class="um-media-left mt40 ml20">' +
+        '<img class="um-circle" height="60px" width="60px" src="img/user.png" alt="...">' +
+        '</div><div class="um-media-body ml15 um-white mt40 ">' +
+        '<p>name</p><p>name@yonyou.com</p>' +
+        '</div></div></div>',
+    mixins: [mixins]
 }
