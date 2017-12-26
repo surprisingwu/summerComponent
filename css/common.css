@@ -84,19 +84,32 @@
     background-color: rgb(247, 247, 247)
 }
 
-.collapse-list-enter-active,
-.collapse-list-leave-active {
-    transition: 0.3s;
+.flex2-wrapper {
+    display: flex;
+    display: -webkit-flex;
+    padding: 5px 0;
+    align-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+    background-color: #fff;
 }
 
-@keyframes collapse-list {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    50% {
-        transform: translate3d(0, 80%, 0);
-    }
-    100% {
-        transform: translate3d(0, 100%, 0);
-    }
+.flex2-item-left {
+    padding: 0 15px;
+}
+
+.flex2-item-right {
+    width: 50%;
+    flex: 1;
+    -webkit-flex: 1;
+    padding-right: 15px;
+    text-align: center;
+}
+
+.align-center {
+    position: relative;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }

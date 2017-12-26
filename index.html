@@ -14,6 +14,8 @@
     <script src="js/summer.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+    <script src="js/velocity.js"></script>
+    <script src="js/better-scroll.js"></script>
     <script src="js/vue.js"></script>
     <script src="js/vue-router.js"></script>
     <script src="js/components/index.js"></script>
@@ -32,21 +34,23 @@
             <main ref="main">
                 <ul>
                     <li class="list-item" v-for='item in components' @click.stop="listItemClick(item,$event)" :class="{'active-background': item.isChangeBackground&&!item.isBorderShow}">
-                        <div class="content-inner margin-left-15" v-bind:class="{'border-1px':item.isBorderShow}">
+                        <div class="content-inner margin-left-15" :class="{'border-1px':item.isBorderShow}">
                             <span class="text">{{item.title}}</span>
                             <i class="iconfont icon-jiantouxia icon-common" v-if='isHaveChildren(item)' :class="{'active-arrow': !item.isBorderShow}"></i>
                             <i class="iconfont icon-jiantouyou icon-common" v-else></i>
                         </div>
-                        <transition name='collapse-ani'>
-                            <ul class="child-wrapper" v-if='item.isChangeBackground'>
-                                <li v-show='!item.isBorderShow' v-for="subItem in item.children" class="child-list-item" v-bind='subItem.path' @click.stop="childItemClick">
+
+                        <ul class="child-wrapper" v-if='item.isChangeBackground'>
+                            <transition-group name='collapse-ani' v-bind:css="false" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave">
+                                <li v-show='!item.isBorderShow' v-for="(subItem,index) in item.children" class="child-list-item" v-bind='subItem.path' v-bind:data-index='index' @click.stop="childItemClick" :key='index'>
                                     <div class="content-inner border-1px">
                                         <span class="text">{{subItem.text}}</span>
                                         <i class="iconfont icon-jiantouyou icon-common"></i>
                                     </div>
                                 </li>
-                            </ul>
-                        </transition>
+                            </transition-group>
+                        </ul>
+
                     </li>
                 </ul>
             </main>

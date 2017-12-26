@@ -16,6 +16,7 @@ header {
     top: 0;
     height: 44px;
     width: 100%;
+    z-index: 1;
     box-sizing: border-box;
     background-color: rgb(247, 247, 247);
     border-bottom: 1px solid rgb(218, 218, 220)
@@ -93,4 +94,12 @@ main {
     bottom: 0;
     transform: translate3d(-100%, 0, 0);
     background-color: rgba(0, 0, 0, 0.3);
+}
+
+.background-color-fff {
+    background-color: #fff;
+}
+
+.um-nav-item {
+    color: #777
 }

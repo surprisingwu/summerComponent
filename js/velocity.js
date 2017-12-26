@@ -3882,7 +3882,7 @@
             };
         });
 
-        return Velocity;
+        return window.Velocity = Velocity;
     }((window.jQuery || window.Zepto || window), window, document);
 }));
 

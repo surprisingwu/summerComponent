@@ -18,17 +18,71 @@
                 {
                     title: '选项卡',
                     isBorderShow: true,
+                    isChangeBackground: true,
+                    children: [
+                        { path: { path: 'tab/base1' }, text: '基础选项卡' },
+                        { path: { path: 'tab/base2' }, text: 'tab栏切换' }
+                    ]
+                },
+                {
+                    title: '底部工具栏',
+                    isBorderShow: true,
                     isChangeBackground: false,
+                    path: { path: 'bottomtab' }
+                }, {
+                    title: '按钮',
+                    isBorderShow: true,
+                    isChangeBackground: true,
+                    children: [
+                        { path: { path: 'button/base' }, text: '普通按钮' },
+                        { path: { path: 'button/haveIcon' }, text: '带图标的按钮' },
+                        { path: { path: 'button/btns' }, text: '按钮组' },
+                    ]
+                }, {
+                    title: '输入框',
+                    isBorderShow: true,
+                    isChangeBackground: false,
+                    path: { path: 'input' }
+                }, {
+                    title: '单选框',
+                    isBorderShow: true,
+                    isChangeBackground: false,
+                    path: { path: 'radio' }
                 }
             ],
         },
         created: function() {
             this.touch = {}
         },
-        computed: {
-
+        mounted: function() {
+            this.$nextTick(function() {
+                var el = this.$refs.main
+                this.scroll = new BScroll(el, {
+                    click: true
+                })
+            })
         },
         methods: {
+            beforeEnter: function(el) {
+                el.style.opacity = 0
+                el.style.height = 0
+            },
+            enter: function(el, done) {
+                var delay = el.dataset.index * 50
+                setTimeout(function() {
+                    Velocity(
+                        el, { opacity: 1, height: '40px' }, { complete: done }
+                    )
+                }, delay)
+            },
+            leave: function(el, done) {
+                var delay = el.dataset.index * 50
+                setTimeout(function() {
+                    Velocity(
+                        el, { opacity: 0, height: 0 }, { complete: done }
+                    )
+                }, delay)
+            },
             isHaveChildren: function(item) {
                 return item.children && item.children.length
             },
@@ -38,9 +92,12 @@
             },
             listItemClick: function(item, e) {
                 e.stopPropagation();
-                console.log('冒泡')
                 if (this.isHaveChildren(item) && item.isChangeBackground) {
                     item.isBorderShow = !item.isBorderShow
+                } else {
+                    if (item.path) {
+                        this.$router.push(item.path)
+                    }
                 }
             },
             slideStart: function(e) {
