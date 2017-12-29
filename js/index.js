@@ -3,66 +3,154 @@
         el: "#app",
         router: router,
         data: {
-            isSpread: false, // 侧滑页面是够展开
+            isSpread: false, // 侧滑页面是否展开
             isMove: false, // 侧滑页面是否开始滑动
             components: [{
-                    title: '导航栏',
-                    isChangeBackground: true,
-                    isBorderShow: true,
-                    children: [
-                        { path: { path: 'navigator/base1' }, text: '基础导航栏' },
-                        { path: { path: 'navigator/base2' }, text: '带头像导航栏(左右排列)' },
-                        { path: { path: 'navigator/base3' }, text: '带头像导航栏(横向排列)' }
+                    "title": "导航栏",
+                    "isChangeBackground": true,
+                    "isBorderShow": true,
+                    "children": [
+                        { "path": { "path": "navigator/base1" }, "text": "基础导航栏" },
+                        { "path": { "path": "navigator/base2" }, "text": "带头像导航栏(左右排列)" },
+                        { "path": { "path": "navigator/base3" }, "text": "带头像导航栏(横向排列)" }
                     ]
                 },
                 {
-                    title: '选项卡',
-                    isBorderShow: true,
-                    isChangeBackground: true,
-                    children: [
-                        { path: { path: 'tab/base1' }, text: '基础选项卡' },
-                        { path: { path: 'tab/base2' }, text: 'tab栏切换' }
+                    "title": "选项卡",
+                    "isBorderShow": true,
+                    "isChangeBackground": true,
+                    "children": [
+                        { "path": { "path": "tab/base1" }, "text": "基础选项卡" },
+                        { "path": { "path": "tab/base2" }, "text": "tab栏切换" }
                     ]
                 },
                 {
-                    title: '底部工具栏',
-                    isBorderShow: true,
-                    isChangeBackground: false,
-                    path: { path: 'bottomtab' }
+                    "title": "底部工具栏",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "bottomtab" }
                 }, {
-                    title: '按钮',
-                    isBorderShow: true,
-                    isChangeBackground: true,
-                    children: [
-                        { path: { path: 'button/base' }, text: '普通按钮' },
-                        { path: { path: 'button/haveIcon' }, text: '带图标的按钮' },
-                        { path: { path: 'button/btns' }, text: '按钮组' },
+                    "title": "按钮",
+                    "isBorderShow": true,
+                    "isChangeBackground": true,
+                    "children": [
+                        { "path": { "path": "button/base" }, "text": "普通按钮" },
+                        { "path": { "path": "button/haveIcon" }, "text": "带图标的按钮" },
+                        { "path": { "path": "button/btns" }, "text": "按钮组" },
                     ]
                 }, {
-                    title: '输入框',
-                    isBorderShow: true,
-                    isChangeBackground: false,
-                    path: { path: 'input' }
+                    "title": "输入框",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "input" }
                 }, {
-                    title: '单选框',
-                    isBorderShow: true,
-                    isChangeBackground: false,
-                    path: { path: 'radio' }
-                }
+                    "title": "单选框",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "radio" }
+                }, {
+                    "title": "复选框",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "checkbox" }
+                },
+                {
+                    "title": "开关按钮",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "turnoff" }
+                }, {
+                    "title": "进度条",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "progressbar" }
+                }, {
+                    "title": "日期",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "date" }
+                }, {
+                    "title": "图片",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "photo" }
+                }, {
+                    "title": "画廊",
+                    "isBorderShow": true,
+                    "isChangeBackground": true,
+                    "children": [
+                        { "path": { "path": "gallery/base" }, "text": "普通图片轮播" },
+                        { "path": { "path": "gallery/arrow" }, "text": "箭头轮播、图片查看" },
+                    ]
+                }, {
+                    "title": "日历",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "calendar" }
+                }, {
+                    "title": "滚动选择器",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "scrollpicker" }
+                }, {
+                    "title": "面板",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "panel" }
+                }, {
+                    "title": "表单",
+                    "isBorderShow": true,
+                    "isChangeBackground": true,
+                    "children": [
+                        { "path": { "path": "form/base" }, "text": "普通表单样式" },
+                        { "path": { "path": "form/base2" }, "text": "订单录入" },
+                    ]
+                }, {
+                    "title": "图表",
+                    "isBorderShow": true,
+                    "isChangeBackground": true,
+                    "children": [
+                        { "path": { "path": "chart/base1" }, "text": "饼状图" },
+                        { "path": { "path": "chart/base2" }, "text": "柱状图" },
+                        { "path": { "path": "chart/base3" }, "text": "折线图" },
+                    ]
+                },
             ],
         },
         created: function() {
             this.touch = {}
+            summerready = function() {}
         },
         mounted: function() {
-            this.$nextTick(function() {
-                var el = this.$refs.main
-                this.scroll = new BScroll(el, {
+            var _self = this
+            var el = this.$refs.main
+            setTimeout(function() {
+                _self.scroll = new BScroll(el, {
                     click: true
                 })
-            })
+            }, 50)
         },
         methods: {
+            closeApp: function() {
+                this.functionback()
+            },
+            functionback: function() {
+                var u = navigator.userAgent,
+                    app = navigator.appVersion;
+                var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+                var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+                if (isAndroid) {
+                    navigator.app.exitApp();
+                }
+                if (isIOS) {
+                    var pamn = {
+                        "params": {
+                            "transtype": "exit_back"
+                        }
+                    };
+                    summer.callService("SummerService.gotoNative", pamn, false);
+                }
+            },
             beforeEnter: function(el) {
                 el.style.opacity = 0
                 el.style.height = 0
@@ -87,18 +175,26 @@
                 return item.children && item.children.length
             },
             childItemClick: function(e) {
+                if (this.isSpread) {
+                    this.openSlideWrapper()
+                }
                 var path = e.currentTarget.attributes['path'].value
                 this.$router.push({ path: path })
             },
             listItemClick: function(item, e) {
                 e.stopPropagation();
+
                 if (this.isHaveChildren(item) && item.isChangeBackground) {
                     item.isBorderShow = !item.isBorderShow
                 } else {
+                    if (this.isSpread) {
+                        this.openSlideWrapper()
+                    }
                     if (item.path) {
                         this.$router.push(item.path)
                     }
                 }
+
             },
             slideStart: function(e) {
                 this.touch.startX = e.touches[0].pageX

@@ -22,7 +22,7 @@
 
 .icon-common {
     position: absolute;
-    right: 20px;
+    right: 15px;
     color: #333;
     transition: all 0.2s;
 }
@@ -41,6 +41,8 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 2;
+    overflow: hidden;
     background: rgb(239, 239, 244);
 }
 
@@ -97,6 +99,7 @@
 
 .flex2-item-left {
     padding: 0 15px;
+    font-size: 15px;
 }
 
 .flex2-item-right {
@@ -112,4 +115,100 @@
     left: 50%;
     transform: translate3d(-50%, 0, 0);
     -webkit-transform: translate3d(-50%, 0, 0);
+}
+
+.back-fff {
+    background-color: #fff;
+}
+
+.com-body {
+    position: fixed;
+    top: 44px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+/* 画廊 */
+
+.swipe {
+    overflow: hidden;
+    visibility: hidden;
+    position: relative;
+    background: #fff;
+}
+
+.swipe-wrap {
+    overflow: hidden;
+    position: relative;
+}
+
+.swipe-wrap .swipe-box {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.swipe-wrap .swipe-box img {
+    width: 100%;
+}
+
+.iSlider-wrapper li img {
+    width: 100%;
+    height: 100%;
+}
+
+li.islider-pic {
+    position: absolute;
+}
+
+
+/* 滚动选择器 */
+
+#select1_dummy {
+    flex: 1;
+    border: none;
+    padding-left: 10px;
+    padding-right: 20px;
+    color: #555;
+    font-size: 15px;
+    text-align: right;
+    background-color: #fff;
+}
+
+
+/* 滚动选择器向右箭头 */
+
+i.iconfont.icon-jiantouyou {
+    position: absolute;
+    right: 15px;
+}
+
+
+/* 地图的样式 */
+
+.amap-touch-toolbar .amap-zoomcontrol {
+    bottom: -30px;
+    right: 0px;
+}
+
+.panel {
+    background-color: #ddf;
+    color: #333;
+    border: 1px solid silver;
+    box-shadow: 3px 4px 3px 0px silver;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    line-height: 20px;
+}
+
+.mapInput {
+    width: 250px;
+    height: 25px;
+    border: 0;
+    background-color: white;
 }

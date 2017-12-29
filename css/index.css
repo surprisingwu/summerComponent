@@ -1,9 +1,11 @@
-#main {
-    position: fixed;
+#main,
+#app {
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
+    overflow: hidden;
     background-color: #fff;
 }
 
@@ -92,6 +94,7 @@ main {
     width: 60%;
     top: 0;
     bottom: 0;
+    z-index: 3;
     transform: translate3d(-100%, 0, 0);
     background-color: rgba(0, 0, 0, 0.3);
 }
@@ -102,4 +105,53 @@ main {
 
 .um-nav-item {
     color: #777
+}
+
+
+/* 日期时间选择器 */
+
+input[name=start],
+input[name=end] {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding-right: 20px;
+    text-align: right;
+    background-color: #fff;
+}
+
+
+/* 侧滑页面的布局 */
+
+.slider-header {
+    height: 44px;
+    font-size: 17px;
+    padding-left: 15px;
+    line-height: 44px;
+}
+
+.description {
+    padding-left: 15px;
+    text-indent: 1em;
+    font-size: 13px;
+    color: #333;
+}
+
+.slider-btn-wrapper {
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+}
+
+button.slider-close-btn {
+    display: inline-block;
+    height: 30px;
+    width: 80%;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: rgb(240, 87, 87);
 }

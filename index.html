@@ -7,17 +7,24 @@
     <title></title>
     <link rel="stylesheet" href="css/font-icons.css">
     <link rel="stylesheet" href="css/iuapmobile.um.css">
-
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/islider.css">
+    <link rel="stylesheet" href="css/iscroll.css">
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css">
     <link rel="stylesheet" href="font/iconfont.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="js/summer.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/Frameworks/iuapmobile.frameworks.ui.js"></script>
-    <script src="js/velocity.js"></script>
+    <script src="js/velocity/velocity.js"></script>
     <script src="js/better-scroll.js"></script>
-    <script src="js/vue.js"></script>
-    <script src="js/vue-router.js"></script>
+    <script src="js/iscroll.js"></script>
+    <script src="js/swipe.js"></script>
+    <script src="js/echarts.common.min.js"></script>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=d13df96ab37812514b272b0d34a25092"></script>
+    <script src="js/islider.js"></script>
+    <script src="js/vue/vue.js"></script>
+    <script src="js/vue/vue-router.js"></script>
     <script src="js/components/index.js"></script>
     <script src="js/router/index.js"></script>
     <script src="js/index.js"></script>
@@ -29,14 +36,14 @@
             <header>
                 <i class="slideLeft iconfont icon-zhedie-copy" @click.stop='openSlideWrapper'></i>
                 <h2 class="title">首页</h2>
-                <i class="questionInfo iconfont icon-shuoming"></i>
+                <i class="questionInfo iconfont icon-guanbi" @click="closeApp"></i>
             </header>
             <main ref="main">
                 <ul>
-                    <li class="list-item" v-for='item in components' @click.stop="listItemClick(item,$event)" :class="{'active-background': item.isChangeBackground&&!item.isBorderShow}">
-                        <div class="content-inner margin-left-15" :class="{'border-1px':item.isBorderShow}">
+                    <li class="list-item" v-for='item in components' @click.stop="listItemClick(item,$event)" :class="{ 'active-background': item.isChangeBackground&&!item.isBorderShow}">
+                        <div class="content-inner margin-left-15" :class="{ 'border-1px':item.isBorderShow}">
                             <span class="text">{{item.title}}</span>
-                            <i class="iconfont icon-jiantouxia icon-common" v-if='isHaveChildren(item)' :class="{'active-arrow': !item.isBorderShow}"></i>
+                            <i class="iconfont icon-jiantouxia icon-common" v-if='isHaveChildren(item)' :class="{ 'active-arrow': !item.isBorderShow}"></i>
                             <i class="iconfont icon-jiantouyou icon-common" v-else></i>
                         </div>
 
@@ -57,12 +64,19 @@
             <transition name="router-slide">
                 <router-view></router-view>
             </transition>
-
         </div>
-
-
         <div class="slideWrapper" ref="slideWrapper">
-
+            <div class="slider-header">
+                侧滑导航
+            </div>
+            <div clsss="main">
+                <div class="description">
+                    这是首页侧滑导航示例,你可以在这里放置任何内容.
+                </div>
+                <div class="slider-btn-wrapper" @click="openSlideWrapper">
+                    <button class="slider-close-btn">关闭侧滑菜单</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
