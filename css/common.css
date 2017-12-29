@@ -1,214 +1,289 @@
-.border-1px {
-    position: relative;
-}
-
-.border-1px::after {
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    border-bottom: 1px solid rgb(228, 227, 230);
-    content: " ";
-}
-
-.border-none {
-    position: relative
-}
-
-.border-none::after {
-    display: none;
-}
-
-.icon-common {
-    position: absolute;
-    right: 15px;
-    color: #333;
-    transition: all 0.2s;
-}
-
-.active-background {
-    background-color: rgb(238, 238, 238)
-}
-
-.active-arrow {
-    transform: rotate(-180deg);
-}
-
-.components-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    overflow: hidden;
-    background: rgb(239, 239, 244);
-}
-
-.router-slide-enter-active,
-.router-slide-leave-active {
-    transition: all 0.3s ease;
-}
-
-.router-slide-enter,
-.router-slide-leave-to {
-    transform: translate3d(100%, 0, 0)
-}
-
-.um-check-group {
-    margin: 0;
-}
-
-.margin-left-15 {
-    margin-left: 15px;
-}
-
-
-/* 组件里面的样式 */
-
-.text-content,
-.components-title {
-    font-size: 13px;
-    color: rgb(143, 143, 148);
-    background-color: rgb(239, 239, 244);
-}
-
-.text-content {
-    padding: 20px 15px;
-}
-
-.components-title {
-    padding: 10px 15px;
-}
-
-.um-header-light {
-    background-color: rgb(247, 247, 247)
-}
-
-.flex2-wrapper {
-    display: flex;
-    display: -webkit-flex;
-    padding: 5px 0;
-    align-content: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    -webkit-justify-content: center;
-    background-color: #fff;
-}
-
-.flex2-item-left {
-    padding: 0 15px;
-    font-size: 15px;
-}
-
-.flex2-item-right {
-    width: 50%;
-    flex: 1;
-    -webkit-flex: 1;
-    padding-right: 15px;
-    text-align: center;
-}
-
-.align-center {
-    position: relative;
-    left: 50%;
-    transform: translate3d(-50%, 0, 0);
-    -webkit-transform: translate3d(-50%, 0, 0);
-}
-
-.back-fff {
-    background-color: #fff;
-}
-
-.com-body {
-    position: fixed;
-    top: 44px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-
-/* 画廊 */
-
-.swipe {
-    overflow: hidden;
-    visibility: hidden;
-    position: relative;
-    background: #fff;
-}
-
-.swipe-wrap {
-    overflow: hidden;
-    position: relative;
-}
-
-.swipe-wrap .swipe-box {
-    float: left;
-    width: 100%;
-    position: relative;
-}
-
-.swipe-wrap .swipe-box img {
-    width: 100%;
-}
-
-.iSlider-wrapper li img {
-    width: 100%;
-    height: 100%;
-}
-
-li.islider-pic {
-    position: absolute;
-}
-
-
-/* 滚动选择器 */
-
-#select1_dummy {
-    flex: 1;
-    border: none;
-    padding-left: 10px;
-    padding-right: 20px;
-    color: #555;
-    font-size: 15px;
-    text-align: right;
-    background-color: #fff;
-}
-
-
-/* 滚动选择器向右箭头 */
-
-i.iconfont.icon-jiantouyou {
-    position: absolute;
-    right: 15px;
-}
-
-
-/* 地图的样式 */
-
-.amap-touch-toolbar .amap-zoomcontrol {
-    bottom: -30px;
-    right: 0px;
-}
-
-.panel {
-    background-color: #ddf;
-    color: #333;
-    border: 1px solid silver;
-    box-shadow: 3px 4px 3px 0px silver;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border-radius: 5px;
-    overflow: hidden;
-    line-height: 20px;
-}
-
-.mapInput {
-    width: 250px;
-    height: 25px;
-    border: 0;
-    background-color: white;
-}
+            .border-1px {
+                position: relative;
+            }
+            
+            .border-1px::after {
+                display: block;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                border-bottom: 1px solid rgb(228, 227, 230);
+                content: " ";
+            }
+            
+            .border-none {
+                position: relative
+            }
+            
+            .border-none::after {
+                display: none;
+            }
+            
+            .icon-common {
+                position: absolute;
+                right: 15px;
+                color: #333;
+                transition: all 0.2s;
+            }
+            
+            .active-background {
+                background-color: rgb(238, 238, 238)
+            }
+            
+            .active-arrow {
+                transform: rotate(-180deg);
+            }
+            
+            .components-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 2;
+                overflow: hidden;
+                background: rgb(239, 239, 244);
+            }
+            
+            .router-slide-enter-active,
+            .router-slide-leave-active {
+                transition: all 0.3s ease;
+            }
+            
+            .router-slide-enter,
+            .router-slide-leave-to {
+                transform: translate3d(100%, 0, 0)
+            }
+            
+            .um-check-group {
+                margin: 0;
+            }
+            
+            .margin-left-15 {
+                margin-left: 15px;
+            }
+            /* 组件里面的样式 */
+            
+            .text-content,
+            .components-title {
+                font-size: 13px;
+                color: rgb(143, 143, 148);
+                background-color: rgb(239, 239, 244);
+            }
+            
+            .text-content {
+                padding: 20px 15px;
+            }
+            
+            .components-title {
+                padding: 10px 15px;
+            }
+            
+            .um-header-light {
+                background-color: rgb(247, 247, 247)
+            }
+            
+            .flex2-wrapper {
+                display: flex;
+                display: -webkit-flex;
+                padding: 5px 0;
+                align-content: center;
+                justify-content: center;
+                -webkit-align-items: center;
+                -webkit-justify-content: center;
+                background-color: #fff;
+            }
+            
+            .flex2-item-left {
+                padding: 0 15px;
+                font-size: 15px;
+            }
+            
+            .flex2-item-right {
+                width: 50%;
+                flex: 1;
+                -webkit-flex: 1;
+                padding-right: 15px;
+                text-align: center;
+            }
+            
+            .align-center {
+                position: relative;
+                left: 50%;
+                transform: translate3d(-50%, 0, 0);
+                -webkit-transform: translate3d(-50%, 0, 0);
+            }
+            
+            .back-fff {
+                background-color: #fff;
+            }
+            
+            .com-body {
+                position: fixed;
+                top: 44px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+            /* 画廊 */
+            
+            .swipe {
+                overflow: hidden;
+                visibility: hidden;
+                position: relative;
+                background: #fff;
+            }
+            
+            .swipe-wrap {
+                overflow: hidden;
+                position: relative;
+            }
+            
+            .swipe-wrap .swipe-box {
+                float: left;
+                width: 100%;
+                position: relative;
+            }
+            
+            .swipe-wrap .swipe-box img {
+                width: 100%;
+            }
+            
+            .iSlider-wrapper li img {
+                width: 100%;
+                height: 100%;
+            }
+            
+            li.islider-pic {
+                position: absolute;
+            }
+            /* 滚动选择器 */
+            
+            #select1_dummy {
+                flex: 1;
+                border: none;
+                padding-left: 10px;
+                padding-right: 20px;
+                color: #555;
+                font-size: 15px;
+                text-align: right;
+                background-color: #fff;
+            }
+            /* 滚动选择器向右箭头 */
+            
+            i.iconfont.icon-jiantouyou {
+                position: absolute;
+                right: 15px;
+            }
+            /* 地图的样式 */
+            
+            .amap-touch-toolbar .amap-zoomcontrol {
+                bottom: -30px;
+                right: 0px;
+            }
+            
+            .panel {
+                background-color: #ddf;
+                color: #333;
+                border: 1px solid silver;
+                box-shadow: 3px 4px 3px 0px silver;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                border-radius: 5px;
+                overflow: hidden;
+                line-height: 20px;
+            }
+            
+            .mapInput {
+                width: 250px;
+                height: 25px;
+                border: 0;
+                background-color: white;
+            }
+            /* 弹出框的样式 */
+            
+            .confirm {
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 998;
+                background-color: rgba(0, 0, 0, .2)
+            }
+            
+            .confirm .confirm-fade-enter-active {
+                animation: confirm-fadein 0.3s;
+            }
+            
+            .confirm .confirm-content {
+                animation: confirm-zoom 0.3s;
+            }
+            
+            .confirm-wrapper {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 999;
+            }
+            
+            .confirm-content {
+                width: 270px;
+                border-radius: 13px;
+                background: #fff;
+            }
+            
+            .confirm-content .text {
+                padding: 19px 15px;
+                line-height: 22px;
+                text-align: center;
+                font-size: 17px;
+                color: #333;
+            }
+            
+            .confirm-content .operate {
+                display: flex;
+                align-items: center;
+                text-align: center;
+                font-size: 17px;
+            }
+            
+            .confirm-content .operate-btn {
+                flex: 1;
+                line-height: 22px;
+                padding: 10px 0;
+                border-top: 1px solid rgba(0, 0, 0, .3);
+                color: #666;
+            }
+            
+            .operate .left {
+                border-right: 1px solid rgba(0, 0, 0, .3)
+            }
+            
+            .operate .right {
+                color: #2DBBFA;
+            }
+            
+            @keyframes confirm-fadein {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1
+                }
+            }
+            
+            @keyframes confirm-zoom {
+                0% {
+                    transform: scale(0);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+                100% {
+                    transform: scale(1)
+                }
+            }

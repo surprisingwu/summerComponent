@@ -26,5 +26,6 @@ var router = new VueRouter({
         { path: '/chart/base1', component: components.chart.base1 },
         { path: '/chart/base2', component: components.chart.base2 },
         { path: '/chart/base3', component: components.chart.base3 },
+        { path: '/listview', component: components.listview },
     ]
 })

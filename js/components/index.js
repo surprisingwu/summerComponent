@@ -33,6 +33,61 @@ var mixins = {
         }
     }
 }
+components.confirm = {
+    props: {
+        text: {
+            type: String,
+            default: ''
+        },
+        confirmBtnText: {
+            type: String,
+            default: '确定'
+        },
+        cancelBtnText: {
+            type: String,
+            default: '取消'
+        }
+    },
+    template: '<transition name="confirm-fade">\
+    <div class="confirm" v-show="showFlag" @click.stop>\
+      <div class="confirm-wrapper">\
+        <div class="confirm-content">\
+          <p class="text">{{text}}</p>\
+          <div class="operate">\
+            <div @click="cancel" class="operate-btn left">{{cancelBtnText}}</div>\
+            <div @click="confirm" class="operate-btn right">{{confirmBtnText}}</div>\
+          </div>\
+        </div>\
+      </div>\
+    </div>\
+  </transition>',
+    data: function() {
+        return {
+            showFlag: false
+        }
+    },
+    methods: {
+        show: function() {
+            this.showFlag = true
+        },
+        hide: function() {
+            this.showFlag = false
+        },
+        cancel: function() {
+            this.hide()
+            this.$emit('cancel')
+        },
+        confirm: function() {
+            this.hide()
+            this.$emit('confirm')
+        }
+    },
+    watch: {
+        text: function(newVal, oldVal) {
+            console.log(newVal)
+        }
+    }
+}
 components.navigator.NavigatorBase = {
     template: '<div class="components-wrapper">' +
         '<div class="um-header-light">' +
@@ -499,7 +554,11 @@ components.gallery.base = {
     }
 }
 components.gallery.arrow = {
-    mixins: [mixins.commonComponents],
+    // mixins: [mixins.commonComponents],
+    components: {
+        wrapper: components.template.wrapper,
+        comtitle: components.template.titleUp
+    },
     data: function() {
         return {
             imgs: [
@@ -520,7 +579,7 @@ components.gallery.arrow = {
     },
     template: '<wrapper title="画廊"><comtitle title="带箭头的轮播图"><div class="um-row"><div id="iSlider-wrapper" style="height:150px" class="iSlider-wrapper">' +
         '</div></div></comtitle><comtitle title="图片查看"><div class="um-nav"><div class="um-nav-inner">' +
-        '<div class="um-nav-item" v-for="item in imgs"><img :src="item.src" width="150" alt="">' +
+        '<div class="um-nav-item" style="padding:0 10px" v-for="item in imgs"><img :src="item.src" width="150" alt="">' +
         '</div></div></div></comtitle></wrapper>',
     mounted: function() {
         var list = [{
@@ -1012,5 +1071,92 @@ components.chart.base3 = {
                 console.log(JSON.stringify(param.value));
             });
         })
+    }
+}
+
+components.listview = {
+    data: function() {
+        return {
+            text: '',
+            jsonArray: [
+                { 'company': '国家电网公司', 'order_id': '000000000001', 'order_status': '待审核', 'order_money': '1,500', 'currency': '$', 'order_date': '2015-01-01', 'delivery_date': '2015-01-02', 'contact_name': '小明', 'contact_tel': '130********', 'if_store': false, 'memo': '记得及时发货' },
+                { 'company': '中国移动通信集团公司', 'order_id': '000000000002', 'order_status': '待确认', 'order_money': '11,000', 'currency': '$', 'order_date': '2015-01-01', 'delivery_date': '2015-01-02', 'contact_name': '小明', 'contact_tel': '130********', 'if_store': false, 'memo': '记得及时发货' },
+                { 'company': '中国人寿保险(集团)公司', 'order_id': '000000000003', 'order_status': '已关闭', 'order_money': '22,100', 'currency': '$', 'order_date': '2015-01-01', 'delivery_date': '2015-01-02', 'contact_name': '小明', 'contact_tel': '130********', 'if_store': false, 'memo': '记得及时发货' }
+            ]
+        }
+    },
+    template: '<wrapper title="listview 组件"><comtitle title="listview组件的功能是非常强大的，支持上拉加载、下拉刷新、侧滑、列表的点击、以及侧滑按钮的点击，甚至长点击。"></comtitle>\
+        <div class="um-listview-wrap" id="listview">\
+    <ul class="um-list um-no-active">\
+        <li class="um-listview-row" v-for="(item,index) in jsonArray">\
+			<a class="um-list-item um-swipe-action um-no-icon">\
+				<div class="um-swipe-btns">\
+					<span class="um-swipe-btn um-delete">删除</span>\
+				</div><div class="um-list-item-media">\
+					<label class="um-check-inline um-list-left-icon">\
+					<input name="um-checkbox-inline" type="checkbox">\
+					<span class="um-icon-checkbox um-css3-vc"></span> </label>\
+				</div><div class="um-list-item-inner">\
+					<div class="um-list-item-body" style="padding-right:0">\
+						<div class="clearfix f16">\
+							<div class="um-xs-6 tl um-text-overflow">\
+								<span class="fb">{{item.company}}</span>\
+							</div><div class="um-xs-6 tr um-text-overflow um-red">\
+								<span>{{item.currency}}</span>\
+								<span>{{item.order_money}}</span>\
+							</div></div><div class="clearfix mt5 f12">\
+							<div class="um-xs-6 tl um-text-overflow">\
+								<span class="um-gray">{{item.order_id}}</span>\
+								<span>{{item.order_status}}</span>\
+							</div><div class="um-xs-6 tr um-text-overflow">\
+								<span class="um-gray">{{item.order_date}}</span>\
+							</div></div></div></div> </a></li></ul></div>\
+    <totast-confirm ref="confirm" :text="text"></totast-confirm></wrapper>',
+    created: function() {
+
+    },
+    mounted: function() {
+        var _self = this
+        setTimeout(function() {
+            var listview = UM.listview('#listview');
+            var that = _self
+            listview.on('pullDown', function(sender) {
+                row = { 'company': '中国兵器装备集团公司', 'order_id': '000000000000', 'order_status': '待审核', 'order_money': '1,500', 'currency': '$', 'order_date': '2015-01-01', 'delivery_date': '2015-01-02', 'contact_name': '小明', 'contact_tel': '130********', 'if_store': false, 'memo': '记得及时发货' }; -
+                that.jsonArray.unshift(row);
+                sender.refresh();
+            });
+            listview.on('pullUp', function(sender) {
+                var row = { 'company': '宝钢集团有限公司', 'order_id': '000000000006', 'order_status': '待审核', 'order_money': '2,500', 'currency': '$', 'order_date': '2015-01-01', 'delivery_date': '2015-01-02', 'contact_name': '小明', 'contact_tel': '130********', 'if_store': false, 'memo': '记得及时发货' };
+                that.jsonArray.push(row);
+                sender.refresh();
+            });
+            listview.on('itemClick', function(sender, args) {
+                that.text = "触发列表点击逻辑"
+                that.show()
+            });
+            listview.on('itemSwipeLeft', function(sender, args) {
+                sender.showItemMenu(args.$target);
+            });
+            listview.on('itemDelete', function(sender, args) {
+                args.$target.slideUp(500, function() {});
+            });
+            listview.on('tapHold', function() {
+                that.text = "触发了长点击"
+                that.show()
+            });
+        }, 20)
+    },
+    methods: {
+        show: function() {
+            this.$refs.confirm.show()
+        },
+        deleteListItem: function(index) {
+            this.jsonArray.splice(index, 1)
+        }
+    },
+    components: {
+        wrapper: components.template.wrapper,
+        'totast-confirm': components.confirm,
+        comtitle: components.template.title
     }
 }

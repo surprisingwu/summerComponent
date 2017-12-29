@@ -133,7 +133,7 @@ input[name=end] {
 }
 
 .description {
-    padding-left: 15px;
+    padding: 0 15px;
     text-indent: 1em;
     font-size: 13px;
     color: #333;
@@ -154,4 +154,25 @@ button.slider-close-btn {
     border-radius: 5px;
     color: #fff;
     background-color: rgb(240, 87, 87);
+}
+
+.slider-title-content.border-1px {
+    padding-top: 15px;
+}
+
+h2.slider-title {
+    font-size: 17px;
+    padding-left: 15px;
+}
+
+p.slider-text {
+    padding: 0 15px 10px 15px;
+    text-indent: 1em;
+    font-size: 13px;
+    color: #333;
+}
+
+.slider-listview.border-1px {
+    position: relative;
+    padding: 10px 0 10px 15px;
 }

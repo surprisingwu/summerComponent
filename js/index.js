@@ -30,6 +30,12 @@
                     "isChangeBackground": false,
                     "path": { "path": "bottomtab" }
                 }, {
+                    "title": "listview组件（上拉加载、下拉刷新..）",
+                    "isBorderShow": true,
+                    "isChangeBackground": false,
+                    "path": { "path": "listview" }
+                },
+                {
                     "title": "按钮",
                     "isBorderShow": true,
                     "isChangeBackground": true,
